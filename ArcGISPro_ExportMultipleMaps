@@ -1,0 +1,44 @@
+# ArcGISPro_ExportMultipleMaps
+
+###################################################################################
+#### Read the README.md for step by step instructions on how to run the code. #####
+###################################################################################
+
+################### Input variables ###############################################
+map_name = input ("Name of the Map: ")
+layout_name = input ("Name of the layout: ")
+Layers_list = input("List of layer names separated by comma: ")
+Folder_location = input(r"Output folder location for the exported maps: ")
+File_prefix = input ("File name prefix for exported maps: ")
+File_suffix = input ("Export with layer/group name (yes/no): ").strip().lower()
+
+####################  Main functions ##############################################
+import arcpy, os, sys
+project = arcpy.mp.ArcGISProject("Current")
+
+# Specify the map
+map = project.listMaps(map_name)[0]
+
+# Specify the layout
+layout = project.listLayouts(layout_name)[0]
+
+# Create output file path
+path = os.path.join(Folder_location,File_prefix)
+
+# Split the layer names into a list
+layers = Layers_list.split(",")
+
+# Loop through the list of layers and export maps for each layer
+if File_suffix == "yes":
+    for i in range(len(layers)):
+        map.listLayers(layers[i])[0].visible = True
+        map.listLayers(layers[i-1])[0].visible = False
+        file_name = layers[i]
+        layout.exportToPNG(path+file_name,resolution=300)
+    print("Output files exported with layer/group name.")
+else:
+    for i in range(len(layers)):
+        map.listLayers(layers[i])[0].visible = True
+        map.listLayers(layers[i-1])[0].visible = False
+        layout.exportToPNG(path+str(i+1),resolution=300)
+    print("Output files exported with order number.")
