@@ -13,7 +13,7 @@ This script can be used to export multiple maps from a ArcGIS project layout. Th
 
 ## 3. Step by Step Guide
 
-Follow these steps to execute the code.
+Follow these steps to execute the code (Demonstration is provided in this [YouTube Tutorial](https://www.youtube.com/watch?v=3LWcPiPtmQA)).
 
 1. Open an ArcGISPro project (containing the data and the layout that needed to be exported).
 
