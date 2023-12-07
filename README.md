@@ -8,6 +8,8 @@ This script can be used to export multiple maps from a ArcGIS project layout. Th
 
 ## 2. Important Notes
 
+- <b>Warning!!!</b> Save your project before running the code.
+- Make sure the layers/groups (depending on the  input for `Layers_list`) have <b>unique names</b>.
 - This code assumes that the ArcGIS project is currently open and active in the ArcGIS Desktop application.
 - Make sure you have the necessary permissions to access the specified export location.
 
